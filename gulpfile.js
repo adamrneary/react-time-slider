@@ -37,7 +37,8 @@ var paths = {
 paths.static = [
   join(paths.demo, paths.libSource, '**/*'),
   join('!', paths.demo, paths.libSource, '**/*.css'),
-  join('!', paths.demo, paths.libSource, '**/*.js')
+  join('!', paths.demo, paths.libSource, '**/*.js'),
+  'README.md'
 ]
 paths.css = [
   join(paths.demo, paths.libSource, '**/*.css'),
