@@ -1,4 +1,16 @@
-.ui-slider {
+/**
+ * React Time Slider
+ *
+ * *Note*: src/index.css relies on [SUIT CSS](https://github.com/suitcss/suit)
+ * This file can be imported along with other components, leveraging theme
+ * variables for consistent visual treatment.
+ *
+ * If you are not using SUIT CSS, you can start with the compiled version of
+ * this file: dist/react-time-slider.css and then override as desired.
+ *
+ */
+
+ .ui-slider {
   background: #ebedef;
   border-radius: 32px;
   height: 12px;
