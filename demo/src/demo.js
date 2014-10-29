@@ -24,6 +24,14 @@ var Demo = React.createClass({
 });
 
 var Jumbotron = React.createClass({
+  timeSliderContext: {
+    from: 201404,
+    minFrom: 201402,
+    to: 201408,
+    maxTo: 201411,
+    format: 'MMM YY'
+  },
+
   render: function() {
     return (
       <div className="Grid Grid--withGutter">
@@ -31,24 +39,84 @@ var Jumbotron = React.createClass({
           <h1 className="entry-title">React Time Slider</h1>
         </div>
         <div className="Grid-cell u-size1of2">
-          <CodeExample />
+          <GistEmbed />
         </div>
         <div className="Grid-cell u-size1of2">
           <div className="entry-summary">
             A React time slider component using JQuery-UI and Moment
           </div>
           <ArticleMetadata />
-          <TimeSlider />
+          <TimeSlider data={this.timeSliderContext} />
         </div>
       </div>
     );
   }
 });
 
-var CodeExample = React.createClass({
+// https://gist.github.com/jeremiahlee/1748966
+var GistEmbed = React.createClass({
+  getInitialState: function() {
+    return {
+      markup: ''
+    }
+  },
+  componentDidMount: function() {
+
+  	// Create an iframe, append it to this document where specified
+		var gistFrame = document.createElement("iframe");
+		gistFrame.setAttribute("width", "100%");
+		gistFrame.id = "gistFrame";
+
+		var zone = document.getElementById("gistZone");
+		zone.innerHTML = "";
+		zone.appendChild(gistFrame);
+
+		// Create the iframe's document
+    var gistId = 'adamrneary/a759fd68208808020598';
+		var gistFrameHTML = '<html><body onload="parent.adjustIframeSize(document.body.scrollHeight)"><scr' + 'ipt type="text/javascript" src="https://gist.github.com/' + gistId + '.js"></sc'+'ript></body></html>';
+
+		// Set iframe's document with a trigger for this document to adjust the height
+		var gistFrameDoc = gistFrame.document;
+
+		if (gistFrame.contentDocument) {
+			gistFrameDoc = gistFrame.contentDocument;
+		} else if (gistFrame.contentWindow) {
+			gistFrameDoc = gistFrame.contentWindow.document;
+		}
+
+		gistFrameDoc.open();
+		gistFrameDoc.writeln(gistFrameHTML);
+		gistFrameDoc.close();
+
+		console.log("iframe added");
+
+    function adjustIframeSize(newHeight) {
+  		var i = document.getElementById("gistFrame");
+  		i.style.height = parseInt(newHeight) + "px";
+  		console.log("size adjusted", newHeight);
+  	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // var url = 'https://gist.github.com/' + gistId + '.json';
+
+
+  },
   render: function() {
     return (
-      <pre>code here</pre>
+      <div id='gistZone' />
     );
   }
 });
