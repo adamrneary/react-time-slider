@@ -46,35 +46,40 @@ var Jumbotron = React.createClass({
           <TimeSlider data={this.timeSliderContext} />
         </div>
         <div className="Grid-cell u-size2of3">
-          <GistEmbed />
+          <GistEmbed gistID='a759fd68208808020598'/>
         </div>
       </div>
     );
   }
 });
 
+// https://developer.zendesk.com/blog/rendering-to-iframes-in-react
+function adjustHeightWhenComplete(myFrame, myDoc) {
+  if(myDoc.readyState === 'complete') {
+    var content_height = myFrame.contentWindow.document.documentElement.scrollHeight;
+    myFrame.style.height = content_height + 'px';
+  } else {
+    // This will be continiously called until the iFrame is ready
+    setTimeout(function(){adjustHeightWhenComplete(myFrame, myDoc)});
+  }
+};
+
 // https://gist.github.com/jeremiahlee/1748966
 var GistEmbed = React.createClass({
-  getInitialState: function() {
-    return {
-      markup: '',
-      gistId: 'a759fd68208808020598'
-    }
-  },
   componentDidMount: function() {
 
     // Create an iframe, append it to this document where specified
 		var gistFrame = document.createElement("iframe");
 		gistFrame.setAttribute("width", "100%");
-		gistFrame.id = "gistFrame" + this.state.gistId;
+		gistFrame.id = "gistFrame" + this.props.gistID;
 
-		var zone = document.getElementById("gistZone" + this.state.gistId);
+		var zone = document.getElementById("gistZone" + this.props.gistID);
 		zone.innerHTML = "";
 		zone.appendChild(gistFrame);
 
 		// Create the iframe's document
 
-    var url = "https://gist.github.com/" + this.state.gistId + ".js";
+    var url = "https://gist.github.com/" + this.props.gistID + ".js";
 		var gistFrameHTML = '<html><body><script type="text/javascript" src=' + url + '></script></body></html>';
 
 		// Set iframe's document with a trigger for this document to adjust the height
@@ -90,16 +95,11 @@ var GistEmbed = React.createClass({
 		gistFrameDoc.writeln(gistFrameHTML);
 		gistFrameDoc.close();
 
-    setTimeout(function(){
-      var content_height = gistFrame.contentWindow.document.documentElement.scrollHeight;
-      gistFrame.style.height = content_height + 'px';
-    }, 500);
-
-
+    adjustHeightWhenComplete(gistFrame, gistFrameDoc);
   },
   render: function() {
     return (
-      <div id={'gistZone' + this.state.gistId} />
+      <div id={'gistZone' + this.props.gistID} />
     );
   }
 });
