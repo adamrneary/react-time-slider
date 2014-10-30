@@ -9,6 +9,9 @@ var GistEmbed = require('../../src/react-gist-embed');
 var MarkdownFile = require('../../src/react-markdown-file');
 var ArticleMetadata = require('../../src/react-article-metadata');
 
+// https://github.com/facebook/react-devtools
+window.React = React;
+
 var Demo = React.createClass({
   render: function() {
     return (
@@ -27,14 +30,6 @@ var Demo = React.createClass({
 });
 
 var Jumbotron = React.createClass({
-  timeSliderContext: {
-    from: 201404,
-    minFrom: 201402,
-    to: 201408,
-    maxTo: 201411,
-    format: 'MMM YY'
-  },
-
   render: function() {
     return (
       <div className="Grid Grid--withGutter">
@@ -46,13 +41,25 @@ var Jumbotron = React.createClass({
           <ArticleMetadata author='Adam Neary' dateTimeString='2014-02-03'/>
         </div>
         <div className="Grid-cell u-size1of3">
-          <TimeSlider data={this.timeSliderContext} />
+          <Example />
         </div>
         <div className="Grid-cell u-size2of3">
           <GistEmbed gistID='a759fd68208808020598'/>
         </div>
       </div>
     );
+  }
+});
+
+var Example = React.createClass({
+  render: function() {
+    var timeSlider = TimeSlider({
+      minFrom: 201402,
+      maxTo: 201411,
+      initialFrom: 201404,
+      initialTo: 201408
+    });
+    return timeSlider;
   }
 });
 
