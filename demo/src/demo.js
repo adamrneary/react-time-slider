@@ -5,7 +5,7 @@
 
 var React = require('react');
 var TimeSlider = require('../../src/index');
-var GistEmbed = require('../../src/react-gist-embed');
+var GistEmbed = require('react-gist-embed');
 var MarkdownFile = require('../../src/react-markdown-file');
 var ArticleMetadata = require('../../src/react-article-metadata');
 
@@ -44,7 +44,7 @@ var Jumbotron = React.createClass({
           <Example />
         </div>
         <div className="Grid-cell u-size2of3">
-          <GistEmbed gistID='a759fd68208808020598'/>
+          <GistEmbed gistId='a759fd68208808020598'/>
         </div>
       </div>
     );

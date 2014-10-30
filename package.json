@@ -50,6 +50,7 @@
     "merge-stream": "^0.1.5",
     "mocha": "^1.20.1",
     "moment": "^2.8.3",
+    "react-gist-embed": "0.0.2",
     "reactify": "^0.14.0",
     "rework-suit": "^4.0.0",
     "rimraf": "^2.2.8",
