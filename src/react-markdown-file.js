@@ -28,9 +28,7 @@ var ReactMarkdownFile = React.createClass({
   render: function() {
     var rawMarkup = markdown.toHTML(this.state.md);
     return (
-      <div class="entry-content">
-        <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
-      </div>
+      <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
     );
   }
 });
