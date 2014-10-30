@@ -35,18 +35,18 @@ var Jumbotron = React.createClass({
   render: function() {
     return (
       <div className="Grid Grid--withGutter">
-        <div className="Grid-cell u-size1of2 u-before1of2">
+        <div className="Grid-cell u-size1of1">
           <h1 className="entry-title">React Time Slider</h1>
-        </div>
-        <div className="Grid-cell u-size1of2">
-          <GistEmbed />
-        </div>
-        <div className="Grid-cell u-size1of2">
           <div className="entry-summary">
             A React time slider component using JQuery-UI and Moment
           </div>
           <ArticleMetadata />
+        </div>
+        <div className="Grid-cell u-size1of3">
           <TimeSlider data={this.timeSliderContext} />
+        </div>
+        <div className="Grid-cell u-size2of3">
+          <GistEmbed />
         </div>
       </div>
     );
@@ -95,24 +95,6 @@ var GistEmbed = React.createClass({
   		i.style.height = parseInt(newHeight) + "px";
   		console.log("size adjusted", newHeight);
   	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // var url = 'https://gist.github.com/' + gistId + '.json';
-
-
   },
   render: function() {
     return (
