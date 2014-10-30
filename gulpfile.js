@@ -180,4 +180,4 @@ gulp.task('gh-pages', function(){
     .pipe(deploy());
 });
 
-gulp.task('deploy', ['dist', 'demo', 'ghPages']);
+gulp.task('deploy', ['dist', 'demo', 'gh-pages']);
