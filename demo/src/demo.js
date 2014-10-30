@@ -58,7 +58,9 @@ var Example = React.createClass({
       maxTo: 201411,
       initialFrom: 201404,
       initialTo: 201408,
-      onChange: function(values){console.log(values)}
+      onChange: function(values) {
+        console.log(values)
+      }
     });
     return timeSlider;
   }

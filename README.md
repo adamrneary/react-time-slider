@@ -1,28 +1,91 @@
+_Note:_ This is an initial alpha. I haven't even added CSS to the demo.
+More to come.
+
 ## Introduction
 
-Ezel makes it easy to write and maintain Backbone apps that run in the browser and on the server using [Node.js](http://nodejs.org/). Built on popular libraries like [Express](http://expressjs.com/), [Backbone](http://backbonejs.org/), and [Browserify](http://browserify.org/), Ezel isn&apos;t a framework or library of its own, but rather a boilerplate of libraries and patterns that can be leveraged or abandoned as needed.
+A common use case for the [jQuery UI Slider](http://api.jqueryui.com/slider) is
+to allow the user to specify a date range which then impacts the other elements
+on the page.
 
-Ezel has three main philosophies...
+Often, the dates impact the state of the app, which in turn is reflected in the
+URL via the router, though raw or formatted dates are not suitable for this
+purpose.
 
-### Modularity
+One solution is to ask the router to serialize the date into an Integer and ask
+the labels around the slider to format the date as desired, but the couples the
+two and creates extra work.
 
-Instead of managing growing complexity in projects by imposing rigid monolithic structure, Ezel encourages breaking your project up into smaller pieces that are easy to maintain and refactor independently.
+Instead, this component receives and returns Integers, allowing the user to
+specify a grain (annual, monthly, or daily) for the slider itself as well as
+the format for its labels.
 
-### Flexiblity
+## Getting started
 
-Don&apos;t get locked into choosing between single page app or fully server-side rendered pages. Ezel&apos;s modular structure and shared server/client code makes it easy to decide what patterns and tools are best on a case by case basis.
+Install via npm:
 
-### Run on Both Sides
+```bash
+npm install --save react-time-slider
+```
 
-Ezel [shares javascript modules that run in the browser and on the server](http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/). This means you can [optimize initial page load](https://blog.twitter.com/2012/improving-performance-twittercom) and SEO by sharing templates that can render on the server or client. This also makes it easy to test all of your code in Node.js using [benv](http://github.com/artsy/benv) and [zombie](http://zombie.labnotes.org/) for robust, fast, and easy to set up tests.
+Then simply require and pass configuration.
 
-## Getting Started
+```js
+var TimeSlider = require('react-time-slider');
 
-### Installation
+var Example = React.createClass({
+  render: function() {
+    var timeSlider = TimeSlider({
+      minFrom: 201402,
+      maxTo: 201411,
+      initialFrom: 201404,
+      initialTo: 201408,
+      onChange: function(values) {
+        console.log(values)
+      }
+    });
+    return timeSlider;
+  }
+});
+```
 
-1.  Install [Node.js](http://nodejs.org/)
-2.  Install the Ezel project generator globally `npm install -g ezel`
-3.  Generate your project `ezel myapp` (Use `ezel --coffeescript myapp` for coffeescript) and `cd` to the directory.
-4.  Install node modules `npm install`
-5.  Run the server `make s`
-6.  Visit [localhost:4000](http://localhost:4000) and see an example that uses the GitHub API.
+
+## API
+
+The component receives and returns Integers, so the grain at which the slider
+is set naturally impacts the other component properties.
+
+**grain** (Optional Enum, default `monthly`)
+
+The grain of the time slider can be set to `daily`, `monthly`, or `annual`.
+
+* If the grain is set to `annual`, dates will be Integers of the format `YYYY`.
+* If the grain is set to `monthly`, dates will be Integers of the format `YYYYMM`.
+* If the grain is set to `daily`, dates will be Integers of the format `YYYYMMDD`.
+
+**minFrom** and **maxTo** (Required Numbers)
+
+These properties reflect the overall valid range of the slider, passed as
+Integers of the specified grain. These values are immutable.
+
+**initialFrom** and **initialTo** (Required Numbers)
+
+These properties reflect the initial values of the range itself. They are only
+used in initializing the slider. Once initialized, the slider uses internal
+state to keep track of the current range values.
+
+**format** (Optional String, default `MMM YYYY`)
+
+The format property is used by Moment.js to format its labels associated with
+the current state of the slider.
+
+**onChange** (Optional Function, default $.noop)
+
+The slider internally handles the jQuery UI Slider onSlide event to update its
+labels, but the values are only returned to the caller on the Change event.
+
+See [jQuery UI Slider's documentation](http://api.jqueryui.com/slider/#event-slide)
+for more detailed event descriptions.
+
+The function is **not** passed the event and values arguments, but rather just
+an array of length two with the from and to values as Integers of the specified
+grain. 
