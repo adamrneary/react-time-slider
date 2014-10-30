@@ -6,8 +6,8 @@
 var React = require('react');
 var TimeSlider = require('../../src/index');
 var GistEmbed = require('react-gist-embed');
-var MarkdownFile = require('../../src/react-markdown-file');
-var ArticleMetadata = require('../../src/react-article-metadata');
+var MarkdownFile = require('react-markdown-file');
+var ArticleMetadata = require('react-article-metadata');
 
 // https://github.com/facebook/react-devtools
 window.React = React;
