@@ -35,13 +35,25 @@ var TimeSlider = React.createClass({
     };
   },
 
+  handleSlide: function(e,v) {
+    this.setState({
+      from: v.values[0],
+      to: v.values[1]
+    })
+  },
+
+  handleChange: function(e,v) {
+    this.props.onChange(this.state)
+  },
+
   componentDidMount: function() {
     $('.Slider').slider({
       range: true,
       min: this.props.minFrom,
       max: this.props.maxTo,
       values: [this.props.initialFrom, this.props.initialTo],
-      change: this.props.onChange
+      slide: this.handleSlide,
+      change: this.handleChange
     });
   },
 
