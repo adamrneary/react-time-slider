@@ -57,23 +57,25 @@ var Jumbotron = React.createClass({
 var GistEmbed = React.createClass({
   getInitialState: function() {
     return {
-      markup: ''
+      markup: '',
+      gistId: 'a759fd68208808020598'
     }
   },
   componentDidMount: function() {
 
-  	// Create an iframe, append it to this document where specified
+    // Create an iframe, append it to this document where specified
 		var gistFrame = document.createElement("iframe");
 		gistFrame.setAttribute("width", "100%");
-		gistFrame.id = "gistFrame";
+		gistFrame.id = "gistFrame" + this.state.gistId;
 
-		var zone = document.getElementById("gistZone");
+		var zone = document.getElementById("gistZone" + this.state.gistId);
 		zone.innerHTML = "";
 		zone.appendChild(gistFrame);
 
 		// Create the iframe's document
-    var gistId = 'adamrneary/a759fd68208808020598';
-		var gistFrameHTML = '<html><body onload="parent.adjustIframeSize(document.body.scrollHeight)"><scr' + 'ipt type="text/javascript" src="https://gist.github.com/' + gistId + '.js"></sc'+'ript></body></html>';
+
+    var url = "https://gist.github.com/" + this.state.gistId + ".js";
+		var gistFrameHTML = '<html><body><script type="text/javascript" src=' + url + '></script></body></html>';
 
 		// Set iframe's document with a trigger for this document to adjust the height
 		var gistFrameDoc = gistFrame.document;
@@ -88,17 +90,16 @@ var GistEmbed = React.createClass({
 		gistFrameDoc.writeln(gistFrameHTML);
 		gistFrameDoc.close();
 
-		console.log("iframe added");
+    setTimeout(function(){
+      var content_height = gistFrame.contentWindow.document.documentElement.scrollHeight;
+      gistFrame.style.height = content_height + 'px';
+    }, 500);
 
-    function adjustIframeSize(newHeight) {
-  		var i = document.getElementById("gistFrame");
-  		i.style.height = parseInt(newHeight) + "px";
-  		console.log("size adjusted", newHeight);
-  	}
+
   },
   render: function() {
     return (
-      <div id='gistZone' />
+      <div id={'gistZone' + this.state.gistId} />
     );
   }
 });
