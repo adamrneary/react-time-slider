@@ -6539,6 +6539,9 @@ a:focus {
  * version of this file: dist/react-time-slider.css and then override as desired.
  *
  */
+.TimeSlider {
+  margin: 8px;
+}
 .TimeSlider .TimeSlider-label {
   font-size: 14px;
   font-family: Equity, Georgia, Times, serif;
