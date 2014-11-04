@@ -95,19 +95,15 @@ var TimeSliderTitle = React.createClass({
   },
   render: function() {
     return (
-      <div className="TimeSlider--label">
+      <div className="TimeSlider-label">
         <em>from </em>
-        <strong>
-          <div className="TimeSlider--from">
-            {this.formatDate(this.props.from)}
-          </div>
-        </strong>
+        <div className="TimeSlider-from">
+          {this.formatDate(this.props.from)}
+        </div>
         <em> to </em>
-        <strong>
-          <div className="TimeSlider--to">
-            {this.formatDate(this.props.to)}
-          </div>
-        </strong>
+        <div className="TimeSlider-to">
+          {this.formatDate(this.props.to)}
+        </div>
       </div>
     );
   }

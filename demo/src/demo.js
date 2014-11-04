@@ -15,13 +15,17 @@ window.React = React;
 var Demo = React.createClass({
   render: function() {
     return (
-      <div className="Container--narrow">
+      <div className="container">
         <article class="hentry">
           <header>
-            <Jumbotron />
+            <Masthead />
           </header>
-          <div class="entry-content">
-            <MarkdownFile fileName='README.md'/>
+          <div className="row">
+            <div className="col-xs-12 col-md-9 col-md-offset-1">
+              <div class="entry-content">
+                <MarkdownFile fileName='README.md'/>
+              </div>
+            </div>
           </div>
         </article>
       </div>
@@ -29,22 +33,28 @@ var Demo = React.createClass({
   }
 });
 
-var Jumbotron = React.createClass({
+var Masthead = React.createClass({
   render: function() {
     return (
-      <div className="Grid Grid--withGutter">
-        <div className="Grid-cell u-size1of1">
-          <h1 className="entry-title">React Time Slider</h1>
-          <div className="entry-summary">
-            A React time slider component using JQuery-UI and Moment
+      <div className="Masthead">
+        <div className="row">
+          <div className="col-xs-12 col-md-9 col-md-offset-1">
+            <h1 className="entry-title">React Time Slider</h1>
+            <div className="entry-summary">
+              A React time slider component using JQuery-UI and Moment
+            </div>
+            <div className="hidden">
+              <ArticleMetadata author='Adam Neary' dateTimeString='2014-02-03'/>
+            </div>
           </div>
-          <ArticleMetadata author='Adam Neary' dateTimeString='2014-02-03'/>
         </div>
-        <div className="Grid-cell u-size1of3">
-          <Example />
-        </div>
-        <div className="Grid-cell u-size2of3">
-          <GistEmbed gistId='a759fd68208808020598'/>
+        <div className="row">
+          <div className="col-xs-12 col-md-3 col-md-offset-1">
+            <Example />
+          </div>
+          <div className="col-xs-12 col-md-7">
+            <GistEmbed gistId='a759fd68208808020598'/>
+          </div>
         </div>
       </div>
     );

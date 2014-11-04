@@ -1,6 +1,3 @@
-_Note:_ This is an initial alpha. I haven't even added CSS to the demo.
-More to come.
-
 ## Introduction
 
 A common use case for the [jQuery UI Slider](http://api.jqueryui.com/slider) is
@@ -88,4 +85,4 @@ for more detailed event descriptions.
 
 The function is **not** passed the event and values arguments, but rather just
 an array of length two with the from and to values as Integers of the specified
-grain. 
+grain.
