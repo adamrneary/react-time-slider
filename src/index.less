@@ -1,0 +1,97 @@
+/**
+ * React Time Slider: src/index.less
+ *
+ * _A note on class names:_ The lower-case classes prefixed with "ui-" come from
+ * jQuery-UI out of the box. When the slider() method is called, these classes
+ * are created automatically. In contract, the upper-case classes in the style
+ * of SUIT-CSS are defined by this component specifically.
+ *
+ *
+ * **To use with Bootstrap:** This source file uses variable names from the
+ * Bootstrap framework. If you are using Bootstrap or a Bootstrap compatible set
+ * of LESS variables, simply include this file, and you're done.
+ *
+ * **To customize using these variables:** If you are not using Bootstrap but
+ * want to take advantage of the available variables, simply define values for
+ * the variables used below, and compile.
+ *
+ * **To use compiled css:** If you prefer, you can start with the compiled
+ * version of this file: dist/react-time-slider.css and then override as desired.
+ *
+ */
+.TimeSlider {
+
+  .TimeSlider-label {
+    font-size: @font-size-small;
+    font-family: @font-family-serif;
+    text-align: center;
+
+    .TimeSlider-from,
+    .TimeSlider-to {
+      font-family: @font-family-sans-serif;
+      font-weight: 700;
+      display: inline;
+    }
+  }
+
+  .Slider {
+    background: @gray-lighter;
+    border-radius: 32px;
+    height: 12px;
+    box-shadow: none;
+    margin-bottom: 20px;
+    position: relative;
+    cursor: pointer;
+
+    .ui-slider-handle {
+      background-color: @brand-primary;
+      border-radius: 50%;
+      cursor: pointer;
+      height: 18px;
+      position: absolute;
+      width: 18px;
+      z-index: 2;
+      transition: background 0.25s;
+
+
+      margin-left: -9px;
+      top: -3px;
+    }
+    .ui-slider-handle:hover,
+    .ui-slider-handle:focus {
+      background-color: lighten(@brand-primary, 20%);
+      outline: none;
+    }
+    .ui-slider-handle:active {
+      background-color: @brand-primary;
+    }
+    .ui-slider-handle[style*="100"] {
+      margin-left: -15px;
+    }
+    .ui-slider-range {
+      background-color: lighten(@brand-primary, 20%);
+      display: block;
+      height: 100%;
+      position: absolute;
+      z-index: 1;
+      border-radius: 30px 0 0 30px;
+    }
+    .ui-slider-segment {
+      background-color: ;
+      border-radius: 50%;
+      height: 6px;
+      width: 6px;
+      float: left;
+      margin: 3px -6px 0 0;
+    }
+    .ui-slider-value {
+      float: right;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+    .ui-slider-value.first {
+      clear: left;
+      float: left;
+    }
+  }
+}

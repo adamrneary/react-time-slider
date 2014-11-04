@@ -11,8 +11,7 @@ var runSequence = require('run-sequence');
 var del = require('del');
 
 // css
-var rework = require('gulp-rework');
-var reworkSuit = require('rework-suit');
+var less = require('gulp-less');
 
 // js
 var watchify = require('watchify');
@@ -36,13 +35,13 @@ var paths = {
 };
 paths.static = [
   join(paths.demo, paths.libSource, '**/*'),
-  join('!', paths.demo, paths.libSource, '**/*.css'),
+  join('!', paths.demo, paths.libSource, '**/*.less'),
   join('!', paths.demo, paths.libSource, '**/*.js'),
   'README.md'
 ]
 paths.css = [
-  join(paths.demo, paths.libSource, '**/*.css'),
-  join(paths.libSource, '**/*.css')
+  join(paths.demo, paths.libSource, '**/*.less'),
+  join(paths.libSource, '**/*.less')
 ]
 paths.js = [
   join(paths.demo, paths.libSource, '**/*.js'),
@@ -62,9 +61,8 @@ gulp.task('demo:clean', function (cb) {
 });
 
 gulp.task('demo:css', function(){
-  return gulp.src(join(paths.demo, paths.libSource, 'demo.css'))
-    .pipe(cached('demo-css'))
-    .pipe(rework(reworkSuit()))
+  return gulp.src(join(paths.demo, paths.libSource, 'demo.less'))
+    .pipe(less())
     .pipe(gulp.dest(join(paths.demo, paths.dist)))
     .pipe(liveReload());
 });
@@ -135,10 +133,10 @@ gulp.task('default', function(callback) {
 // ============================================================================
 
 gulp.task('dist:css', function(){
-  gulp.src(join(paths.libSource, 'index.css'))
-    .pipe(rename(join(libName, '.css')))
+  gulp.src(join(paths.libSource, 'index.less'))
     .pipe(cached('dist-css'))
-    .pipe(rework(reworkSuit()))
+    .pipe(less())
+    .pipe(rename(join(libName, '.css')))
     .pipe(gulp.dest(paths.dist))
 });
 
