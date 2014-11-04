@@ -6349,6 +6349,9 @@ a:focus {
   text-decoration: none;
   transition: color 0.75s ease;
 }
+.TimeSlider {
+  margin: 8px;
+}
 .TimeSlider .TimeSlider-label {
   font-size: 14px;
   font-family: Equity, Georgia, Times, serif;
