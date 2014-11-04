@@ -1,9 +1,22 @@
 @import "../../node_modules/adamrneary-base-css/css/adamrneary-base";
-@import "../../node_modules/adamrneary-base-css/css/concourse.css"
-@import "../../node_modules/adamrneary-base-css/css/equity.css"
+@import "../../node_modules/adamrneary-base-css/css/concourse";
+@import "../../node_modules/adamrneary-base-css/css/equity";
 
 @import "../../src/index";
 
 iframe {
   border: none;
+}
+
+Demo {
+  margin-top: 150px;
+}
+
+Masthead {
+  .entry-summary {
+    font-size: @font-size-small;
+    font-family: @font-family-sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
 }

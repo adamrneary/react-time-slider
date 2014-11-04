@@ -15,19 +15,21 @@ window.React = React;
 var Demo = React.createClass({
   render: function() {
     return (
-      <div className="container">
-        <article class="hentry">
-          <header>
-            <Masthead />
-          </header>
-          <div className="row">
-            <div className="col-xs-12 col-md-9 col-md-offset-1">
-              <div class="entry-content">
-                <MarkdownFile fileName='README.md'/>
+      <div className='Demo'>
+        <div className="container">
+          <article class="hentry">
+            <header>
+              <Masthead />
+            </header>
+            <div className="row">
+              <div className="col-xs-12 col-md-9 col-md-offset-1">
+                <div class="entry-content">
+                  <MarkdownFile fileName='README.md'/>
+                </div>
               </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </div>
       </div>
     );
   }
