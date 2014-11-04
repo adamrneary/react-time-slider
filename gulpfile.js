@@ -31,7 +31,8 @@ var libName = 'react-time-slider'
 var paths = {
   libSource: 'src/',
   dist: 'dist/',
-  demo: 'demo/'
+  demo: 'demo/',
+  fonts: 'node_modules/adamrneary-base-css/fonts/*'
 };
 paths.static = [
   join(paths.demo, paths.libSource, '**/*'),
@@ -63,7 +64,7 @@ gulp.task('demo:clean', function (cb) {
 gulp.task('demo:css', function(){
   return gulp.src(join(paths.demo, paths.libSource, 'demo.less'))
     .pipe(less())
-    .pipe(gulp.dest(join(paths.demo, paths.dist)))
+    .pipe(gulp.dest(join(paths.demo, paths.dist, 'css/')))
     .pipe(liveReload());
 });
 
@@ -87,7 +88,7 @@ gulp.task('demo:js', function(){
     .pipe(cached('demo-js'))
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(join(paths.demo, paths.dist)))
+    .pipe(gulp.dest(join(paths.demo, paths.dist, 'js/')))
     .pipe(liveReload());
 });
 
@@ -98,10 +99,15 @@ gulp.task('demo:static', function(){
     .pipe(liveReload());
 });
 
+gulp.task('demo:fonts', function(){
+  return gulp.src(paths.fonts)
+    .pipe(gulp.dest(join(paths.demo, paths.dist, 'fonts/')))
+});
+
 gulp.task("demo", function(callback) {
   return runSequence(
     ['demo:clean'],
-    ['demo:css', 'demo:js', 'demo:static'],
+    ['demo:css', 'demo:js', 'demo:static', 'demo:fonts'],
     callback
   );
 });
