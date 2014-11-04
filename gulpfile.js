@@ -181,7 +181,13 @@ gulp.task('dist', ['dist:css', 'dist:js']);
 
 gulp.task('gh-pages', function(){
   return gulp.src(join(paths.demo, paths.dist, '**/*'))
-    .pipe(deploy());
+    .pipe(ghPages());
 });
 
-gulp.task('deploy', ['dist', 'demo', 'gh-pages']);
+gulp.task('deploy', function(callback) {
+  return runSequence(
+    ['dist', 'demo'],
+    ['gh-pages'],
+    callback
+  );
+});
