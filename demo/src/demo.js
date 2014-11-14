@@ -35,6 +35,20 @@ var Demo = React.createClass({
   }
 });
 
+var GithubButton = React.createClass({
+  render: function() {
+    var iframe = React.DOM.iframe({
+      src: "http://ghbtns.com/github-btn.html?user=adamrneary&repo=react-time-slider&type=fork",
+      allowtransparency: "true",
+      frameborder: "0",
+      scrolling: "0",
+      width: "53",
+      height: "20"
+    });
+    return iframe;
+  }
+});
+
 var Masthead = React.createClass({
   render: function() {
     return (
@@ -45,6 +59,7 @@ var Masthead = React.createClass({
             <div className="entry-summary">
               A React time slider component using JQuery-UI and Moment
             </div>
+            <GithubButton user='adamrneary' repo='react-time-slider' />
             <div className="hidden">
               <ArticleMetadata author='Adam Neary' dateTimeString='2014-02-03'/>
             </div>
@@ -52,9 +67,11 @@ var Masthead = React.createClass({
         </div>
         <div className="row">
           <div className="col-xs-12 col-md-3 col-md-offset-1">
+            <h4>Here is what it looks like:</h4>
             <Example />
           </div>
           <div className="col-xs-12 col-md-7">
+            <h4>Here is how you use it:</h4>
             <GistEmbed gistId='a759fd68208808020598'/>
           </div>
         </div>
