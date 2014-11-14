@@ -20,31 +20,26 @@ the format for its labels.
 
 Install via npm:
 
-```bash
-npm install --save react-time-slider
-```
+    npm install --save react-time-slider
 
 Then simply require and pass configuration.
 
-```js
-var TimeSlider = require('react-time-slider');
+    var TimeSlider = require('react-time-slider');
 
-var Example = React.createClass({
-  render: function() {
-    var timeSlider = TimeSlider({
-      minFrom: 201402,
-      maxTo: 201411,
-      initialFrom: 201404,
-      initialTo: 201408,
-      onChange: function(values) {
-        console.log(values)
+    var Example = React.createClass({
+      render: function() {
+        var timeSlider = TimeSlider({
+          minFrom: 201402,
+          maxTo: 201411,
+          initialFrom: 201404,
+          initialTo: 201408,
+          onChange: function(values) {
+            console.log(values)
+          }
+        });
+        return timeSlider;
       }
     });
-    return timeSlider;
-  }
-});
-```
-
 
 ## API
 

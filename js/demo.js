@@ -36,6 +36,20 @@ var Demo = React.createClass({displayName: 'Demo',
   }
 });
 
+var GithubButton = React.createClass({displayName: 'GithubButton',
+  render: function() {
+    var iframe = React.DOM.iframe({
+      src: "http://ghbtns.com/github-btn.html?user=adamrneary&repo=react-time-slider&type=fork",
+      allowtransparency: "true",
+      frameborder: "0",
+      scrolling: "0",
+      width: "53",
+      height: "20"
+    });
+    return iframe;
+  }
+});
+
 var Masthead = React.createClass({displayName: 'Masthead',
   render: function() {
     return (
@@ -46,6 +60,7 @@ var Masthead = React.createClass({displayName: 'Masthead',
             React.DOM.div({className: "entry-summary"}, 
               "A React time slider component using JQuery-UI and Moment"
             ), 
+            GithubButton({user: "adamrneary", repo: "react-time-slider"}), 
             React.DOM.div({className: "hidden"}, 
               ArticleMetadata({author: "Adam Neary", dateTimeString: "2014-02-03"})
             )
@@ -53,9 +68,11 @@ var Masthead = React.createClass({displayName: 'Masthead',
         ), 
         React.DOM.div({className: "row"}, 
           React.DOM.div({className: "col-xs-12 col-md-3 col-md-offset-1"}, 
+            React.DOM.h4(null, "Here is what it looks like:"), 
             Example(null)
           ), 
           React.DOM.div({className: "col-xs-12 col-md-7"}, 
+            React.DOM.h4(null, "Here is how you use it:"), 
             GistEmbed({gistId: "a759fd68208808020598"})
           )
         )

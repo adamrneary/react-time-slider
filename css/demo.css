@@ -6523,7 +6523,7 @@ a:focus {
  *
  * _A note on class names:_ The lower-case classes prefixed with "ui-" come from
  * jQuery-UI out of the box. When the slider() method is called, these classes
- * are created automatically. In contract, the upper-case classes in the style
+ * are created automatically. In contrast, the upper-case classes in the style
  * of SUIT-CSS are defined by this component specifically.
  *
  *
@@ -6581,7 +6581,7 @@ a:focus {
 }
 .TimeSlider .Slider .ui-slider-handle:hover,
 .TimeSlider .Slider .ui-slider-handle:focus {
-  border-color: #212e42;
+  border-color: #7490bb;
 }
 .TimeSlider .Slider .ui-slider-handle:active {
   border-color: #425d87;
